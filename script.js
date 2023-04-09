@@ -1,3 +1,15 @@
+"use strict";
+const userTab = document.querySelector("[data-userWeather]");
+const searchTab = document.querySelector("[data-searchWeather]");
+const userContainer = document.querySelector(".weather-container");
+
+const grantAccessContainer = document.querySelector(
+  ".grant-location-container"
+);
+const searchForm = document.querySelector("[data-searchForm]");
+const loadingScreen = document.querySelector(".loading-container");
+const userInfoContainer = document.querySelector(".user-info-container");
+
 //Initial Variables
 let currentTab = userTab;
 const API_KEY = "03fe1538c61eb075c2b0eaa4404056ad";
