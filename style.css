@@ -44,11 +44,12 @@ h1 {
   border-radius: 4px;
 }
 .weather-container {
-  display: flex;
+  margin-block: 4rem;
+  /* display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-block: 4rem;
+  margin-block: 4rem; */
 }
 .btn {
   all: unset;
@@ -128,6 +129,7 @@ h1 {
   font-weight: 700;
 }
 .parameter-container {
+  width: 90%;
   display: flex;
   gap: 10px 20px;
   justify-content: center;
@@ -166,6 +168,7 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 0 10px;
+  margin-bottom: 3rem;
 }
 .form-container.active {
   /* scale: 1;
@@ -174,7 +177,7 @@ h1 {
 }
 .form-container input {
   all: unset;
-  width: calc(100%-80px);
+  width: calc(100% - 80px);
   height: 40px;
   padding: 0 20px;
   background-color: rgba(219, 226, 239, 0.5);

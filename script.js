@@ -25,7 +25,7 @@ function switchTab(clickedTab) {
 
     if (!searchForm.classList.contains("active")) {
       //If searchForm container is invisible then make it visible
-      userContainer.classList.remove("active");
+      userInfoContainer.classList.remove("active");
       grantAccessContainer.remove("active");
       searchForm.classList.add("active");
     } else {
@@ -136,7 +136,7 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let cityName = searchInput.value;
   if (cityName === "") return;
-  fetchSearchWeatherInfo(cityName);
+  else fetchSearchWeatherInfo(cityName);
 });
 
 async function fetchSearchWeatherInfo(cityName) {
