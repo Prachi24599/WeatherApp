@@ -106,3 +106,24 @@ searchTab.addEventListener("click", () => {
   // pass clicked tab as input parameter
   switchTab(searchTab);
 });
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("Geolocation is not supported by browser");
+    //Show an alert for no geolocation support available
+  }
+}
+
+function showPosition(position) {
+  const userCoordinates = {
+    lat: position.coords.latitude,
+    lon: position.coords.longitude,
+  };
+  sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
+  fetchUserWeatherInfo(userCoordinates);
+}
+
+const grantAccessButton = document.querySelector("[data-grantAccess]");
+grantAccessButton.addEventListener("click", getLocation);
