@@ -51,6 +51,28 @@ function getFromSessionStorage() {
   }
 }
 
+async function fetchUserWeatherInfo(coordinates) {
+  const { lat, lon } = coordinates;
+  //make grant container invisible
+  grantAccessContainer.classList.remove("active");
+  //make loader visible
+  loadingScreen.classList.add("active");
+
+  // API CALL
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    );
+    const data = await response.json();
+    //As we have got the data from API call, so now we need to hide loading scrren and need to display data
+    loadingScreen.classList.remove("active");
+    userInfoContainer.classList.add("active");
+    renderWeatherInfo(data);
+  } catch (e) {
+    loadingScreen.classList.remove("active");
+    //What else?
+  }
+}
 userTab.addEventListener("click", () => {
   // pass clicked tab as input parameter
   switchTab(userTab);
