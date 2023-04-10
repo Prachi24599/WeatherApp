@@ -20,6 +20,20 @@ function switchTab(clickedTab) {
     currentTab.classList.remove("current-tab");
     currentTab = clickedTab;
     currentTab.classList.add("current-tab");
+
+    if (!searchForm.classList.contains("active")) {
+      //If searchForm container is invisible then make it visible
+      userContainer.classList.remove("active");
+      grantAccessContainer.remove("active");
+      searchForm.classList.add("active");
+    } else {
+      //In Else means, SearchForm was already active and now we are making yourWeatherTab active
+      searchForm.classList.remove("active");
+      userInfoContainer.classList.remove("active");
+      //As now we are in yourWeatherTab, then we also need to display the weather so lets
+      //check local storage first for coordinates, If we have saved them there?
+      getFromSessionStorage();
+    }
   } else {
   }
 }
