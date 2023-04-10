@@ -95,14 +95,14 @@ h1 {
   text-transform: uppercase;
 }
 .user-info-container {
-  /* display: none; */
+  display: none;
 }
 .user-info-container.active {
   display: flex;
 }
 .user-info-container p {
   font-size: 1.5rem;
-  font-weight: 200;
+  text-transform: capitalize;
 }
 .user-info-container img {
   width: 90px;
@@ -122,6 +122,7 @@ h1 {
   height: 30px;
   object-fit: contain;
 }
+
 .user-info-container p[data-temp] {
   font-size: 2.75rem;
   font-weight: 700;
@@ -157,9 +158,41 @@ h1 {
   font-size: 1rem;
   font-weight: 200;
 }
-
+.form-container {
+  display: none;
+  width: 90%;
+  max-width: 550px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+}
 .form-container.active {
-  scale: 1;
-  opacity: 1;
+  /* scale: 1;
+  opacity: 1; */
   display: flex;
+}
+.form-container input {
+  all: unset;
+  width: calc(100%-80px);
+  height: 40px;
+  padding: 0 20px;
+  background-color: rgba(219, 226, 239, 0.5);
+  border-radius: 10px;
+}
+.form-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.form-container input:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.7);
+}
+.form-container .btn {
+  padding: unset;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  margin-bottom: 1px;
 }
