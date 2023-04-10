@@ -9,6 +9,7 @@ const grantAccessContainer = document.querySelector(
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
+const errorContainer = document.querySelector(".error-container");
 
 //Initial Variables
 let currentTab = userTab;
@@ -25,6 +26,8 @@ function switchTab(clickedTab) {
 
     if (!searchForm.classList.contains("active")) {
       //If searchForm container is invisible then make it visible
+      //clear the search field first
+      searchInput.value = "";
       userInfoContainer.classList.remove("active");
       grantAccessContainer.remove("active");
       searchForm.classList.add("active");
@@ -69,10 +72,10 @@ async function fetchUserWeatherInfo(coordinates) {
     //As we have got the data from API call, so now we need to hide loading scrren and need to display data
     loadingScreen.classList.remove("active");
     userInfoContainer.classList.add("active");
+    errorContainer.classList.remove("active");
     renderWeatherInfo(data);
   } catch (e) {
-    loadingScreen.classList.remove("active");
-    //What else?
+    handleError();
   }
 }
 
@@ -149,10 +152,21 @@ async function fetchSearchWeatherInfo(cityName) {
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`
     );
     const data = await response.json();
-    loadingScreen.classList.remove("active");
-    userInfoContainer.classList.add("active");
-    renderWeatherInfo(data);
+    if (data?.cod === "404") {
+      throw Error;
+    } else {
+      loadingScreen.classList.remove("active");
+      userInfoContainer.classList.add("active");
+      errorContainer.classList.remove("active");
+      renderWeatherInfo(data);
+    }
   } catch (err) {
-    //error
+    handleError();
   }
+}
+
+function handleError() {
+  userInfoContainer.classList.remove("active");
+  loadingScreen.classList.remove("active");
+  errorContainer.classList.add("active");
 }
