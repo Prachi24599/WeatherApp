@@ -38,6 +38,19 @@ function switchTab(clickedTab) {
   }
 }
 
+//check if coordinates are already present in session storage or not?
+function getFromSessionStorage() {
+  const localCoordinates = sessionStorage.getItem("user-coordinates");
+  if (!localCoordinates) {
+    //If local coordinates are not present (means we have not given access)
+    //we need to show grant access screen
+    grantAccessContainer.classList.add("active");
+  } else {
+    const coordinates = JSON.parse(localCoordinates);
+    fetchUserWeatherInfo(coordinates);
+  }
+}
+
 userTab.addEventListener("click", () => {
   // pass clicked tab as input parameter
   switchTab(userTab);
