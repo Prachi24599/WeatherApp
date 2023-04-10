@@ -61,7 +61,7 @@ async function fetchUserWeatherInfo(coordinates) {
   // API CALL
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     );
     const data = await response.json();
     //As we have got the data from API call, so now we need to hide loading scrren and need to display data
@@ -73,6 +73,30 @@ async function fetchUserWeatherInfo(coordinates) {
     //What else?
   }
 }
+
+//Render the Response in UI
+function renderWeatherInfo(weatherInfo) {
+  //Fetch the elements first from UI
+  const cityName = document.querySelector("[data-cityName]");
+  const countryIcon = document.querySelector("[data-countryIcon]");
+  const desc = document.querySelector("[data-weatherDesc]");
+  const weatherIcon = document.querySelector("[data-weatherIcon]");
+  const temp = document.querySelector("[data-temp]");
+  const windSpeed = document.querySelector("[data-windspeed]");
+  const humidity = document.querySelector("[data-humidity]");
+  const cloud = document.querySelector("[data-clouds]");
+
+  //fetch values from userInfo objects and put in UI elements
+  cityName.innerText = weatherInfo?.name;
+  countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
+  desc.innerText = weatherInfo?.weather?.[0]?.description;
+  weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
+  temp.innerText = weatherInfo?.main?.temp;
+  windSpeed.innerText = weatherInfo?.wind?.speed;
+  humidity.innerText = weatherInfo?.main?.humidity;
+  cloud.innerText = weatherInfo?.clouds?.all;
+}
+
 userTab.addEventListener("click", () => {
   // pass clicked tab as input parameter
   switchTab(userTab);
