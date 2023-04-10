@@ -14,6 +14,8 @@ const userInfoContainer = document.querySelector(".user-info-container");
 let currentTab = userTab;
 const API_KEY = "03fe1538c61eb075c2b0eaa4404056ad";
 currentTab.classList.add("current-tab");
+//while loading the screen first time, we need to if we coordinates are present or not?
+getFromSessionStorage();
 
 function switchTab(clickedTab) {
   if (clickedTab != currentTab) {
@@ -127,3 +129,30 @@ function showPosition(position) {
 
 const grantAccessButton = document.querySelector("[data-grantAccess]");
 grantAccessButton.addEventListener("click", getLocation);
+
+//Search
+let searchInput = document.querySelector("[data-searchInput]");
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let cityName = searchInput.value;
+  if (cityName === "") return;
+  fetchSearchWeatherInfo(cityName);
+});
+
+async function fetchSearchWeatherInfo(cityName) {
+  loadingScreen.classList.add("active");
+  userInfoContainer.classList.remove("active");
+  grantAccessContainer.classList.remove("active");
+
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
+    );
+    const data = await response.json();
+    loadingScreen.classList.remove("active");
+    userInfoContainer.classList.add("active");
+    renderWeatherInfo(data);
+  } catch (err) {
+    //error
+  }
+}
