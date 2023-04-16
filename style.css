@@ -214,7 +214,7 @@ h1 {
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 420px) {
   .parameter-container {
     max-width: 90%;
     flex-wrap: wrap;
