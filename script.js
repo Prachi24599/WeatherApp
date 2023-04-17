@@ -137,7 +137,9 @@ grantAccessButton.addEventListener("click", getLocation);
 let searchInput = document.querySelector("[data-searchInput]");
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  let cityName = searchInput.value;
+  // use of constant and always trim the input remove white spaces.
+  const cityName = searchInput.value.trim();
+
   if (cityName === "") return;
   else fetchSearchWeatherInfo(cityName);
 });
