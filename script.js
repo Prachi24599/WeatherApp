@@ -1,4 +1,5 @@
 "use strict";
+
 const userTab = document.querySelector("[data-userWeather]");
 const searchTab = document.querySelector("[data-searchWeather]");
 const userContainer = document.querySelector(".weather-container");
@@ -15,6 +16,7 @@ const errorContainer = document.querySelector(".error-container");
 let currentTab = userTab;
 const API_KEY = "03fe1538c61eb075c2b0eaa4404056ad";
 currentTab.classList.add("current-tab");
+
 //while loading the screen first time, we need to if we coordinates are present or not?
 getFromSessionStorage();
 
@@ -140,8 +142,15 @@ searchForm.addEventListener("submit", (e) => {
   // use of constant and always trim the input remove white spaces.
   const cityName = searchInput.value.trim();
 
+  console.log(cityName);
+
   if (cityName === "") return;
-  else fetchSearchWeatherInfo(cityName);
+  if (cityName.match(/[0-9]/i)) {
+    console.log("Number entered");
+    return;
+  }
+
+  fetchSearchWeatherInfo(cityName);
 });
 
 async function fetchSearchWeatherInfo(cityName) {
