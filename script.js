@@ -177,7 +177,7 @@ async function fetchSearchWeatherInfo(cityName) {
 }
 
 function handleError() {
-  userInfoContainer.classList.remove("activ");
+  userInfoContainer.classList.remove("active");
   loadingScreen.classList.remove("active");
   errorContainer.classList.add("active");
 }
