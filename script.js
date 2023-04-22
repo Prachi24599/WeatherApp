@@ -144,7 +144,7 @@ searchForm.addEventListener("submit", (e) => {
 
   console.log(cityName);
 
-  if (cityName === "") return;
+  if (cityName == "") return;
   if (cityName.match(/[0-9]/i)) {
     console.log("Number entered");
     return;
@@ -177,7 +177,7 @@ async function fetchSearchWeatherInfo(cityName) {
 }
 
 function handleError() {
-  userInfoContainer.classList.remove("active");
+  userInfoContainer.classList.remove("activ");
   loadingScreen.classList.remove("active");
   errorContainer.classList.add("active");
 }
