@@ -1,4 +1,4 @@
 # WeatherApp
 
-## [Live](https://weather-app-pp.netlify.app/)
-
+## Live : 
+https://weather-app-pp.netlify.app/
