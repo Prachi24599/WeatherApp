@@ -1,6 +1,6 @@
 # WeatherApp
 
-## Live : 
+## Live Application : 
 https://weather-app-pp.netlify.app/
 
 1. Grant your location access
